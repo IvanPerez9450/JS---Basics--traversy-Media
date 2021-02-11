@@ -264,3 +264,71 @@ const person2= new Person('Mary', 'Smith', '04-03-1970')
 console.log(person2.dob)
 
 //Prototypes
+
+//////////////////////////////////////////*DOM Document Object Model*///////////////////////////////////////////////
+// 1:10:30 DOM Document Object Model
+//         1:14:45 Single element
+//         1:17:00 Multiple element
+//         1:19:25 Loop through
+//         1:20:05 Manipulating the DOM or Changing things in the DOM
+//         1:30:35 Making a tiny little app
+
+// Single element seletors
+console.log(document.getElementById('my-form'));
+console.log(document.querySelector('.container'));
+
+// Multiple element Selector
+const items = document.querySelectorAll('.item');
+
+items.forEach((item) => console.log(item));
+
+// Manipulating the DOM or Changing things in the DOM
+const ul = document.querySelector('.items');
+
+/* ul.remove();
+ul.lastElementChild.remove();
+ul.firstElementChild.textContent = "Hello";
+ul.children[1].innerText = 'Brad';
+ul.lastElementChild.innerHTML = '<h1>IVAN</H1>'
+
+
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#my-form').style.background = '#ccc';
+    document.querySelector('body').classList.add('bg-dark');
+});
+const btn = document.querySelector('.btn');
+btn.addEventListener('mouseover', (e) => {
+    e.preventDefault();
+    document.querySelector('#my-form').style.background = '#ccc';
+    document.querySelector('body').classList.add('bg-dark');
+}); */
+
+const myForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
+
+myForm.addEventListener('submit', onSubmit);
+
+function onSubmit(e) {
+    e.preventDefault();
+
+    if(nameInput.value === '' || emailInput.value === '') {
+        msg.classList.add('error');
+        msg.innerHTML = 'Please enter all fields';
+
+        setTimeout (() => msg.remove(), 3000);
+    } else {
+        const li = document.createElement ('li');
+        li.appendChild(document.createTextNode('${nameInput.value} : ${emailInput.value}'));
+
+        userList.appendChild(li);
+
+        //dlear the flieds
+        nameInput.value = '';
+        emailInput.value = '';
+    }
+}
